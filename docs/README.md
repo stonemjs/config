@@ -1,4 +1,4 @@
-**Config Documentation v0.0.0** • [**Docs**](modules.md)
+**Config Documentation v0.0.31** • [**Docs**](modules.md)
 
 ***
 
@@ -21,9 +21,7 @@ Fluent and simple API with deep dot access to manage configurations in any JavaS
 
 ## Installation
 
-To install the `Config` utility, you need to add it to your project. Assuming it’s part of a package you manage.
-
-NPM:
+The `Config` library is available from the [`npm registry`](https://www.npmjs.com/) and can be installed as follows:
 
 ```bash
 npm i @stone-js/config
@@ -41,10 +39,16 @@ PNPM:
 pnpm add @stone-js/config
 ```
 
+> [!NOTE]
+> This package is Pure ESM. If you are unfamiliar with what that means or how to handle it in your project, 
+> please refer to [`this guide on Pure ESM packages`](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c).
+
+Make sure your project setup is compatible with ESM. This might involve updating your `package.json` or using certain bundler configurations.
+
 The `Config` module can only be imported via ESM import syntax:
 
 ```typescript
-import * as Config from '@stone-js/config';
+import { Config } from '@stone-js/config';
 ```
 
 ## Getting Started
@@ -112,12 +116,28 @@ console.log(config.has('settings.theme')); // Outputs: true
 console.log(config.has('settings.nonExistentKey')); // Outputs: false
 ```
 
-### Managing Default Values
-The `defaults` method allows you to set default values for keys that do not already exist:
+### Adding Configuration Values with Merge
+The `add` method allows you to add configuration values. If the key already exists and both values are objects, they will be merged:
 
 ```typescript
-config.defaults('settings.fontSize', 'medium');
-console.log(config.get('settings.fontSize')); // Outputs: 'medium'
+config.add('settings', { notifications: false });
+console.log(config.get('settings.notifications')); // Outputs: false
+```
+
+### Getting the First Match Configuration Value
+The `firstMatch` method allows you to get the value of the first existing key from an array of keys:
+
+```typescript
+const value = config.firstMatch(['nonExistentKey', 'settings.theme'], 'defaultTheme');
+console.log(value); // Outputs: 'light'
+```
+
+### Getting Multiple Configuration Values
+The `getMany` method allows you to get multiple configuration values at once:
+
+```typescript
+const values = config.getMany(['appName', 'settings.theme']);
+console.log(values); // Outputs: { appName: 'MyApp', 'settings.theme': 'light' }
 ```
 
 ### Clearing Configuration
@@ -137,7 +157,7 @@ config.set('settings.newFeature.enabled', true);
 console.log(config.get('settings.newFeature.enabled')); // Outputs: true
 ```
 
-### Summary
+## Summary
 The `@stone-js/config` library is a powerful and flexible solution for managing configuration in JavaScript and TypeScript applications. With support for nested properties, default value handling, and proxy-based custom behaviors, it provides a robust toolset for configuration management.
 
 Key Features:

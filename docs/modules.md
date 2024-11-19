@@ -1,11 +1,10 @@
-[**Config Documentation v0.0.0**](README.md) • **Docs**
+[**Config Documentation v0.0.31**](README.md) • **Docs**
 
 ***
 
-# Config Documentation v0.0.0
+# Config Documentation v0.0.31
 
 ## Modules
 
 - [Config](Config/README.md)
-- [definitions](definitions/README.md)
 - [Proxiable](Proxiable/README.md)
