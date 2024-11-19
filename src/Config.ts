@@ -1,6 +1,10 @@
 import { Proxiable } from './Proxiable'
-import { ConfigItems } from './definitions'
 import { get as lodashGet, set as lodashSet, has as lodashHas, mergeWith as lodashMergeWith, isObjectLike } from 'lodash-es'
+
+/**
+ * Represents a ConfigItems map where properties are strings mapped to values of type T.
+ */
+export type ConfigItems<T = any> = Record<PropertyKey, T>
 
 /**
  * Class representing a Config.
@@ -27,7 +31,7 @@ export class Config<T = any> extends Proxiable {
    *
    * @param items - Initial configuration items.
    */
-  constructor (items: ConfigItems<T> = {}) {
+  protected constructor (items: ConfigItems<T> = {}) {
     super({
       get: (target: Config<T>, prop: PropertyKey, receiver: unknown) => {
         if (Reflect.has(target, prop)) {
@@ -48,12 +52,8 @@ export class Config<T = any> extends Proxiable {
    * @param fallback - The fallback value if the key does not exist.
    * @returns The configuration value.
    */
-  public get<R>(key: string | string[] | ConfigItems<R>, fallback: R | null = null): R | ConfigItems<R> {
-    if (!Array.isArray(key) && typeof key === 'object') {
-      return this.getMany(key)
-    }
-
-    return lodashGet(this.items, key, fallback)
+  public get<R>(key: PropertyKey, fallback?: R): R | undefined {
+    return lodashGet(this.items, key, fallback) as R
   }
 
   /**
@@ -63,7 +63,7 @@ export class Config<T = any> extends Proxiable {
    * @param fallback - The fallback value if no key matches.
    * @returns The first matching configuration value.
    */
-  public firstMatch<R>(keys: string[], fallback: R | null = null): R {
+  public firstMatch<R>(keys: PropertyKey[], fallback?: R): R {
     const firstKey = keys.find((v) => this.has(v)) ?? []
     return lodashGet(this.items, firstKey, fallback)
   }
@@ -74,9 +74,9 @@ export class Config<T = any> extends Proxiable {
    * @param keys - The keys to retrieve from the configuration.
    * @returns An object containing the requested configuration values.
    */
-  public getMany<R>(keys: string[] | ConfigItems<R>): ConfigItems<R> {
-    const entries: Array<[string, R]> = Array.isArray(keys) ? keys.map((v) => [v, null as R]) : Object.entries(keys)
-    return entries.reduce((results, [key, fallback]) => ({ ...results, [key]: lodashGet(this.items, key, fallback) }), {})
+  public getMany<R>(keys: PropertyKey[] | Record<PropertyKey, T>): R {
+    const entries: Array<[PropertyKey, T | undefined]> = Array.isArray(keys) ? keys.map((v) => [v, undefined]) : Object.entries(keys)
+    return entries.reduce<any>((results: R, [key, fallback]) => ({ ...results, [key]: lodashGet(this.items, key, fallback) }), {})
   }
 
   /**
@@ -85,7 +85,7 @@ export class Config<T = any> extends Proxiable {
    * @param key - The key or keys to check.
    * @returns True if the key exists, false otherwise.
    */
-  public has (key: string | string[]): boolean {
+  public has (key: PropertyKey | PropertyKey[]): boolean {
     return lodashHas(this.items, key)
   }
 
@@ -96,8 +96,8 @@ export class Config<T = any> extends Proxiable {
    * @param value - The value to set.
    * @returns The current Config instance.
    */
-  public set<R>(key: string | string[] | ConfigItems<R>, value: R | null = null): this {
-    const entries: Array<[string, R]> = typeof key === 'object' ? Object.entries(key) : [[key, value]]
+  public set<V>(key: PropertyKey | PropertyKey[] | Record<PropertyKey, T>, value?: V): this {
+    const entries: Array<[PropertyKey, any]> = typeof key === 'object' ? Object.entries(key) : [[key, value]]
 
     for (const [name, val] of entries) {
       lodashSet(this.items, name, val)
@@ -113,8 +113,8 @@ export class Config<T = any> extends Proxiable {
    * @param value - The value to set as default.
    * @returns The current Config instance.
    */
-  public defaults<R>(key: string | string[] | ConfigItems<R>, value: R | ConfigItems<R>): this {
-    if (this.has(key as string | string[]) && isObjectLike(this.get(key)) && isObjectLike(value)) {
+  public add<V>(key: PropertyKey, value: V): this {
+    if (this.has(key) && isObjectLike(this.get(key)) && isObjectLike(value)) {
       lodashMergeWith(value, this.get(key))
     }
 

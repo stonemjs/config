@@ -21,7 +21,7 @@ describe('Config', () => {
 
   it('should get a configuration value with a fallback', () => {
     expect(config.get('nonExistentKey', 'defaultValue')).toBe('defaultValue')
-    expect(config.get({ key: 'defaultValue' })).toEqual({ key: 'defaultValue' })
+    expect(config.getMany({ key: 'defaultValue' })).toEqual({ key: 'defaultValue' })
     expect(config.firstMatch(['nonExistent', 'nonExistent2'], 'default')).toBe('default')
   })
 
@@ -54,9 +54,9 @@ describe('Config', () => {
   })
 
   it('should merge object value when exists', () => {
-    config.defaults('nested', { key2: 'default6' })
+    config.add('nested', { key2: 'default6' })
     expect(config.get('nested')).toEqual({ key: 'nestedValue', key2: 'default6' })
-    config.defaults('setting1', 'newDefault')
+    config.add('setting1', 'newDefault')
     expect(config.get('setting1')).toBe('newDefault')
   })
 
