@@ -52,7 +52,7 @@ export class Config<T = any> extends Proxiable {
    * @param fallback - The fallback value if the key does not exist.
    * @returns The configuration value.
    */
-  public get<R>(key: PropertyKey, fallback?: R): R | undefined {
+  public get<R>(key: PropertyKey, fallback?: R): R {
     return lodashGet(this.items, key, fallback) as R
   }
 
