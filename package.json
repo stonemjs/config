@@ -1,6 +1,6 @@
 {
   "name": "@stone-js/config",
-  "version": "0.0.32",
+  "version": "0.0.33",
   "description": "Fluent and simple API with deep dot access to manage configurations in JavaScript any project",
   "author": "Mr. Stone <evensstone@gmail.com>",
   "license": "Apache-2.0",

@@ -7,6 +7,13 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## Unreleased
 
 
+## [0.0.33](https://github.com/stonemjs/config/compare/v0.0.32...v0.0.33) (2024-11-19)
+
+
+### Miscellaneous Chores
+
+* add dependabot pipeline and badge ([55f617f](https://github.com/stonemjs/config/commit/55f617fec15fbe1dbdd2cff0ce787d8253fd9324))
+
 ## [0.0.32](https://github.com/stonemjs/config/compare/v0.0.3...v0.0.32) (2024-11-19)
 
 
