@@ -7,6 +7,13 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## Unreleased
 
 
+## [0.0.32](https://github.com/stonemjs/config/compare/v0.0.3...v0.0.32) (2024-11-19)
+
+
+### Miscellaneous Chores
+
+* change getters and setters API ([71aa8e7](https://github.com/stonemjs/config/commit/71aa8e7df3c3aad305e3c44d63b80a9db38e4e18))
+
 ## [0.0.3](https://github.com/stonemjs/config/compare/v0.0.2...v0.0.3) (2024-11-16)
 
 
