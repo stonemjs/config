@@ -1,7 +1,7 @@
 {
   "name": "@stone-js/config",
-  "version": "0.0.33",
-  "description": "Fluent and simple API with deep dot access to manage configurations in JavaScript any project",
+  "version": "0.0.34",
+  "description": "Fluent and simple API with deep dot access to manage configurations in JavaScript/TypeScript any project",
   "author": "Mr. Stone <evensstone@gmail.com>",
   "license": "Apache-2.0",
   "repository": {
@@ -49,6 +49,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "deepmerge": "^4.3.1",
     "lodash-es": "^4.17.21"
   },
   "devDependencies": {

@@ -1,8 +1,8 @@
-[**Config Documentation v0.0.31**](../../README.md) • **Docs**
+[**Config Documentation v0.0.33**](../../README.md) • **Docs**
 
 ***
 
-[Config Documentation v0.0.31](../../modules.md) / [Proxiable](../README.md) / Proxiable
+[Config Documentation v0.0.33](../../modules.md) / [Proxiable](../README.md) / Proxiable
 
 # Class: `abstract` Proxiable
 
@@ -40,4 +40,4 @@ A new proxy object for this instance.
 
 #### Defined in
 
-[Proxiable.ts:16](https://github.com/stonemjs/config/blob/71aa8e7df3c3aad305e3c44d63b80a9db38e4e18/src/Proxiable.ts#L16)
+[Proxiable.ts:16](https://github.com/stonemjs/config/blob/766b91d24a20493da66397081634b102901d3c54/src/Proxiable.ts#L16)

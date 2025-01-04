@@ -1,10 +1,10 @@
-[**Config Documentation v0.0.31**](../../README.md) • **Docs**
+[**Config Documentation v0.0.33**](../../README.md) • **Docs**
 
 ***
 
-[Config Documentation v0.0.31](../../modules.md) / [Config](../README.md) / Config
+[Config Documentation v0.0.33](../../modules.md) / [Config](../README.md) / Config
 
-# Class: Config\<T\>
+# Class: Config\<TObject\>
 
 Class representing a Config.
 
@@ -18,25 +18,25 @@ Mr. Stone <evensstone@gmail.com>
 
 ## Type Parameters
 
-• **T** = `any`
+• **TObject** *extends* `object` = `Record`\<`PropertyKey`, `unknown`\>
 
 ## Constructors
 
 ### new Config()
 
-> `protected` **new Config**\<`T`\>(`items`): [`Config`](Config.md)\<`T`\>
+> `protected` **new Config**\<`TObject`\>(`items`?): [`Config`](Config.md)\<`TObject`\>
 
 Create a Config.
 
 #### Parameters
 
-• **items**: [`ConfigItems`](../type-aliases/ConfigItems.md)\<`T`\> = `{}`
+• **items?**: `any`
 
 Initial configuration items.
 
 #### Returns
 
-[`Config`](Config.md)\<`T`\>
+[`Config`](Config.md)\<`TObject`\>
 
 #### Overrides
 
@@ -44,19 +44,19 @@ Initial configuration items.
 
 #### Defined in
 
-[Config.ts:34](https://github.com/stonemjs/config/blob/71aa8e7df3c3aad305e3c44d63b80a9db38e4e18/src/Config.ts#L34)
+[Config.ts:30](https://github.com/stonemjs/config/blob/766b91d24a20493da66397081634b102901d3c54/src/Config.ts#L30)
 
 ## Methods
 
 ### add()
 
-> **add**\<`V`\>(`key`, `value`): `this`
+> **add**\<`TValue`\>(`key`, `value`): `this`
 
 Allows providers to define the default config for a module.
 
 #### Type Parameters
 
-• **V**
+• **TValue**
 
 #### Parameters
 
@@ -64,7 +64,7 @@ Allows providers to define the default config for a module.
 
 The key or keys to set as defaults.
 
-• **value**: `V`
+• **value**: `TValue`
 
 The value to set as default.
 
@@ -76,25 +76,25 @@ The current Config instance.
 
 #### Defined in
 
-[Config.ts:116](https://github.com/stonemjs/config/blob/71aa8e7df3c3aad305e3c44d63b80a9db38e4e18/src/Config.ts#L116)
+[Config.ts:147](https://github.com/stonemjs/config/blob/766b91d24a20493da66397081634b102901d3c54/src/Config.ts#L147)
 
 ***
 
 ### all()
 
-> **all**(): [`ConfigItems`](../type-aliases/ConfigItems.md)\<`T`\>
+> **all**(): `TObject`
 
 Get all of the configuration items as a literal object.
 
 #### Returns
 
-[`ConfigItems`](../type-aliases/ConfigItems.md)\<`T`\>
+`TObject`
 
 All configuration items.
 
 #### Defined in
 
-[Config.ts:129](https://github.com/stonemjs/config/blob/71aa8e7df3c3aad305e3c44d63b80a9db38e4e18/src/Config.ts#L129)
+[Config.ts:164](https://github.com/stonemjs/config/blob/766b91d24a20493da66397081634b102901d3c54/src/Config.ts#L164)
 
 ***
 
@@ -112,99 +112,215 @@ The current Config instance.
 
 #### Defined in
 
-[Config.ts:138](https://github.com/stonemjs/config/blob/71aa8e7df3c3aad305e3c44d63b80a9db38e4e18/src/Config.ts#L138)
+[Config.ts:173](https://github.com/stonemjs/config/blob/766b91d24a20493da66397081634b102901d3c54/src/Config.ts#L173)
 
 ***
 
 ### firstMatch()
 
-> **firstMatch**\<`R`\>(`keys`, `fallback`?): `R`
+Get the first match configuration value.
+
+#### Param
+
+An array of keys to check.
+
+#### Param
+
+The fallback value if no key matches.
+
+#### firstMatch(keys)
+
+> **firstMatch**\<`TReturn`\>(`keys`): `undefined` \| `TReturn`
 
 Get the first match configuration value.
 
-#### Type Parameters
+##### Type Parameters
 
-• **R**
+• **TReturn** = `unknown`
 
-#### Parameters
+##### Parameters
 
 • **keys**: `PropertyKey`[]
 
 An array of keys to check.
 
-• **fallback?**: `R`
+##### Returns
 
-The fallback value if no key matches.
-
-#### Returns
-
-`R`
+`undefined` \| `TReturn`
 
 The first matching configuration value.
 
-#### Defined in
+The first matching configuration value.
 
-[Config.ts:66](https://github.com/stonemjs/config/blob/71aa8e7df3c3aad305e3c44d63b80a9db38e4e18/src/Config.ts#L66)
+##### Param
+
+An array of keys to check.
+
+##### Param
+
+The fallback value if no key matches.
+
+##### Defined in
+
+[Config.ts:78](https://github.com/stonemjs/config/blob/766b91d24a20493da66397081634b102901d3c54/src/Config.ts#L78)
+
+#### firstMatch(keys, fallback)
+
+> **firstMatch**\<`TReturn`\>(`keys`, `fallback`): `TReturn`
+
+Get the first match configuration value.
+
+##### Type Parameters
+
+• **TReturn** = `unknown`
+
+##### Parameters
+
+• **keys**: `PropertyKey`[]
+
+An array of keys to check.
+
+• **fallback**: `TReturn`
+
+The fallback value if no key matches.
+
+##### Returns
+
+`TReturn`
+
+The first matching configuration value.
+
+The first matching configuration value.
+
+##### Param
+
+An array of keys to check.
+
+##### Param
+
+The fallback value if no key matches.
+
+##### Defined in
+
+[Config.ts:87](https://github.com/stonemjs/config/blob/766b91d24a20493da66397081634b102901d3c54/src/Config.ts#L87)
 
 ***
 
 ### get()
 
-> **get**\<`R`\>(`key`, `fallback`?): `undefined` \| `R`
+Get the specified configuration value.
+
+#### Param
+
+The key or keys to retrieve from the configuration.
+
+#### Param
+
+The fallback value if the key does not exist.
+
+#### get(key)
+
+> **get**\<`TReturn`\>(`key`): `undefined` \| `TReturn`
 
 Get the specified configuration value.
 
-#### Type Parameters
+##### Type Parameters
 
-• **R**
+• **TReturn** = `unknown`
 
-#### Parameters
+##### Parameters
 
 • **key**: `PropertyKey`
 
 The key or keys to retrieve from the configuration.
 
-• **fallback?**: `R`
+##### Returns
 
-The fallback value if the key does not exist.
-
-#### Returns
-
-`undefined` \| `R`
+`undefined` \| `TReturn`
 
 The configuration value.
 
-#### Defined in
+The configuration value.
 
-[Config.ts:55](https://github.com/stonemjs/config/blob/71aa8e7df3c3aad305e3c44d63b80a9db38e4e18/src/Config.ts#L55)
+##### Param
+
+The key or keys to retrieve from the configuration.
+
+##### Param
+
+The fallback value if the key does not exist.
+
+##### Defined in
+
+[Config.ts:50](https://github.com/stonemjs/config/blob/766b91d24a20493da66397081634b102901d3c54/src/Config.ts#L50)
+
+#### get(key, fallback)
+
+> **get**\<`TReturn`\>(`key`, `fallback`): `TReturn`
+
+Get the specified configuration value.
+
+##### Type Parameters
+
+• **TReturn** = `unknown`
+
+##### Parameters
+
+• **key**: `PropertyKey`
+
+The key or keys to retrieve from the configuration.
+
+• **fallback**: `TReturn`
+
+The fallback value if the key does not exist.
+
+##### Returns
+
+`TReturn`
+
+The configuration value.
+
+The configuration value.
+
+##### Param
+
+The key or keys to retrieve from the configuration.
+
+##### Param
+
+The fallback value if the key does not exist.
+
+##### Defined in
+
+[Config.ts:59](https://github.com/stonemjs/config/blob/766b91d24a20493da66397081634b102901d3c54/src/Config.ts#L59)
 
 ***
 
 ### getMany()
 
-> **getMany**\<`R`\>(`keys`): `R`
+> **getMany**\<`TReturn`\>(`keys`): `TReturn`
 
 Get many configuration values.
 
 #### Type Parameters
 
-• **R**
+• **TReturn** = `Record`\<`PropertyKey`, `unknown`\>
 
 #### Parameters
 
-• **keys**: `PropertyKey`[] \| `Record`\<`PropertyKey`, `T`\>
+• **keys**: `Record`\<`PropertyKey`, `unknown`\> \| `PropertyKey`[]
 
 The keys to retrieve from the configuration.
 
 #### Returns
 
-`R`
+`TReturn`
 
 An object containing the requested configuration values.
 
 #### Defined in
 
-[Config.ts:77](https://github.com/stonemjs/config/blob/71aa8e7df3c3aad305e3c44d63b80a9db38e4e18/src/Config.ts#L77)
+[Config.ts:107](https://github.com/stonemjs/config/blob/766b91d24a20493da66397081634b102901d3c54/src/Config.ts#L107)
 
 ***
 
@@ -228,27 +344,27 @@ True if the key exists, false otherwise.
 
 #### Defined in
 
-[Config.ts:88](https://github.com/stonemjs/config/blob/71aa8e7df3c3aad305e3c44d63b80a9db38e4e18/src/Config.ts#L88)
+[Config.ts:119](https://github.com/stonemjs/config/blob/766b91d24a20493da66397081634b102901d3c54/src/Config.ts#L119)
 
 ***
 
 ### set()
 
-> **set**\<`V`\>(`key`, `value`?): `this`
+> **set**\<`TValue`\>(`key`, `value`?): `this`
 
 Set a given configuration value.
 
 #### Type Parameters
 
-• **V**
+• **TValue**
 
 #### Parameters
 
-• **key**: `PropertyKey` \| `PropertyKey`[] \| `Record`\<`PropertyKey`, `T`\>
+• **key**: `PropertyKey` \| `Record`\<`PropertyKey`, `unknown`\> \| `PropertyKey`[]
 
 The key or keys to set in the configuration.
 
-• **value?**: `V`
+• **value?**: `TValue`
 
 The value to set.
 
@@ -260,32 +376,32 @@ The current Config instance.
 
 #### Defined in
 
-[Config.ts:99](https://github.com/stonemjs/config/blob/71aa8e7df3c3aad305e3c44d63b80a9db38e4e18/src/Config.ts#L99)
+[Config.ts:130](https://github.com/stonemjs/config/blob/766b91d24a20493da66397081634b102901d3c54/src/Config.ts#L130)
 
 ***
 
 ### create()
 
-> `static` **create**\<`T`\>(`items`): [`Config`](Config.md)\<`T`\>
+> `static` **create**\<`TObject`\>(`items`?): [`Config`](Config.md)\<`TObject`\>
 
 Create a Config.
 
 #### Type Parameters
 
-• **T**
+• **TObject** *extends* `object` = `Record`\<`PropertyKey`, `unknown`\>
 
 #### Parameters
 
-• **items**: [`ConfigItems`](../type-aliases/ConfigItems.md)\<`T`\> = `{}`
+• **items?**: `TObject`
 
 Initial configuration items.
 
 #### Returns
 
-[`Config`](Config.md)\<`T`\>
+[`Config`](Config.md)\<`TObject`\>
 
 A new Config instance.
 
 #### Defined in
 
-[Config.ts:25](https://github.com/stonemjs/config/blob/71aa8e7df3c3aad305e3c44d63b80a9db38e4e18/src/Config.ts#L25)
+[Config.ts:21](https://github.com/stonemjs/config/blob/766b91d24a20493da66397081634b102901d3c54/src/Config.ts#L21)
