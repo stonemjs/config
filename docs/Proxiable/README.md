@@ -1,8 +1,8 @@
-[**Config Documentation v0.0.31**](../README.md) • **Docs**
+[**Config Documentation v0.0.33**](../README.md) • **Docs**
 
 ***
 
-[Config Documentation v0.0.31](../modules.md) / Proxiable
+[Config Documentation v0.0.33](../modules.md) / Proxiable
 
 # Proxiable
 

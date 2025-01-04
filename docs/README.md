@@ -1,4 +1,4 @@
-**Config Documentation v0.0.31** • [**Docs**](modules.md)
+**Config Documentation v0.0.33** • [**Docs**](modules.md)
 
 ***
 
@@ -7,8 +7,9 @@
 [![npm](https://img.shields.io/npm/l/@stone-js/config)](https://opensource.org/licenses/Apache-2.0)
 [![npm](https://img.shields.io/npm/v/@stone-js/config)](https://www.npmjs.com/package/@stone-js/config)
 [![npm](https://img.shields.io/npm/dm/@stone-js/config)](https://www.npmjs.com/package/@stone-js/config)
-![Maintenance](https://img.shields.io/maintenance/yes/2024)
+![Maintenance](https://img.shields.io/maintenance/yes/2025)
 [![Publish Package to npmjs](https://github.com/stonemjs/config/actions/workflows/release.yml/badge.svg)](https://github.com/stonemjs/config/actions/workflows/release.yml)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=stonemjs/config)](https://dependabot.com)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
 Fluent and simple API with deep dot access to manage configurations in any JavaScript project.

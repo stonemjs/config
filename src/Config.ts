@@ -1,20 +1,16 @@
+import deepmerge from 'deepmerge'
 import { Proxiable } from './Proxiable'
-import { get as lodashGet, set as lodashSet, has as lodashHas, mergeWith as lodashMergeWith, isObjectLike } from 'lodash-es'
-
-/**
- * Represents a ConfigItems map where properties are strings mapped to values of type T.
- */
-export type ConfigItems<T = any> = Record<PropertyKey, T>
+import { get as lodashGet, set as lodashSet, has as lodashHas, isObjectLike } from 'lodash-es'
 
 /**
  * Class representing a Config.
  *
  * @author Mr. Stone <evensstone@gmail.com>
  *
- * @template T
+ * @template TObject
  */
-export class Config<T = any> extends Proxiable {
-  private items: ConfigItems<T>
+export class Config<TObject extends object = Record<PropertyKey, unknown>> extends Proxiable {
+  private items: TObject
 
   /**
    * Create a Config.
@@ -22,7 +18,7 @@ export class Config<T = any> extends Proxiable {
    * @param items - Initial configuration items.
    * @returns A new Config instance.
    */
-  static create<T>(items: ConfigItems<T> = {}): Config<T> {
+  static create<TObject extends object = Record<PropertyKey, unknown>>(items?: TObject): Config<TObject> {
     return new this(items)
   }
 
@@ -31,13 +27,13 @@ export class Config<T = any> extends Proxiable {
    *
    * @param items - Initial configuration items.
    */
-  protected constructor (items: ConfigItems<T> = {}) {
+  protected constructor (items?: any) {
     super({
-      get: (target: Config<T>, prop: PropertyKey, receiver: unknown) => {
+      get: (target: Config<TObject>, prop: PropertyKey, receiver: unknown): unknown => {
         if (Reflect.has(target, prop)) {
           return Reflect.get(target, prop, receiver)
         } else {
-          return target.get(prop as string)
+          return target.get(prop)
         }
       }
     })
@@ -49,12 +45,37 @@ export class Config<T = any> extends Proxiable {
    * Get the specified configuration value.
    *
    * @param key - The key or keys to retrieve from the configuration.
+   * @returns The configuration value.
+   */
+  public get<TReturn = unknown>(key: PropertyKey): TReturn | undefined
+
+  /**
+   * Get the specified configuration value.
+   *
+   * @param key - The key or keys to retrieve from the configuration.
    * @param fallback - The fallback value if the key does not exist.
    * @returns The configuration value.
    */
-  public get<R>(key: PropertyKey, fallback?: R): R {
-    return lodashGet(this.items, key, fallback) as R
+  public get<TReturn = unknown>(key: PropertyKey, fallback: TReturn): TReturn
+
+  /**
+   * Get the specified configuration value.
+   *
+   * @param key - The key or keys to retrieve from the configuration.
+   * @param fallback - The fallback value if the key does not exist.
+   * @returns The configuration value.
+   */
+  public get<TReturn = unknown>(key: PropertyKey, fallback?: TReturn): TReturn | undefined {
+    return lodashGet(this.items, key, fallback)
   }
+
+  /**
+   * Get the first match configuration value.
+   *
+   * @param keys - An array of keys to check.
+   * @returns The first matching configuration value.
+   */
+  public firstMatch<TReturn = unknown>(keys: PropertyKey[]): TReturn | undefined
 
   /**
    * Get the first match configuration value.
@@ -63,7 +84,16 @@ export class Config<T = any> extends Proxiable {
    * @param fallback - The fallback value if no key matches.
    * @returns The first matching configuration value.
    */
-  public firstMatch<R>(keys: PropertyKey[], fallback?: R): R {
+  public firstMatch<TReturn = unknown>(keys: PropertyKey[], fallback: TReturn): TReturn
+
+  /**
+   * Get the first match configuration value.
+   *
+   * @param keys - An array of keys to check.
+   * @param fallback - The fallback value if no key matches.
+   * @returns The first matching configuration value.
+   */
+  public firstMatch<TReturn = unknown>(keys: PropertyKey[], fallback?: TReturn): TReturn | undefined {
     const firstKey = keys.find((v) => this.has(v)) ?? []
     return lodashGet(this.items, firstKey, fallback)
   }
@@ -74,9 +104,10 @@ export class Config<T = any> extends Proxiable {
    * @param keys - The keys to retrieve from the configuration.
    * @returns An object containing the requested configuration values.
    */
-  public getMany<R>(keys: PropertyKey[] | Record<PropertyKey, T>): R {
-    const entries: Array<[PropertyKey, T | undefined]> = Array.isArray(keys) ? keys.map((v) => [v, undefined]) : Object.entries(keys)
-    return entries.reduce<any>((results: R, [key, fallback]) => ({ ...results, [key]: lodashGet(this.items, key, fallback) }), {})
+  public getMany<TReturn = Record<PropertyKey, unknown>>(keys: PropertyKey[] | Record<PropertyKey, unknown>): TReturn {
+    const defaults: any = {}
+    const entries: Array<[PropertyKey, unknown]> = Array.isArray(keys) ? keys.map((v) => [v, undefined]) : Object.entries(keys)
+    return entries.reduce((results: TReturn, [key, fallback]) => ({ ...results, [key]: lodashGet(this.items, key, fallback) }), defaults)
   }
 
   /**
@@ -96,8 +127,8 @@ export class Config<T = any> extends Proxiable {
    * @param value - The value to set.
    * @returns The current Config instance.
    */
-  public set<V>(key: PropertyKey | PropertyKey[] | Record<PropertyKey, T>, value?: V): this {
-    const entries: Array<[PropertyKey, any]> = typeof key === 'object' ? Object.entries(key) : [[key, value]]
+  public set<TValue>(key: PropertyKey | PropertyKey[] | Record<PropertyKey, unknown>, value?: TValue): this {
+    const entries: Array<[PropertyKey | PropertyKey[], unknown]> = !Array.isArray(key) && typeof key === 'object' ? Object.entries(key) : [[key, value]]
 
     for (const [name, val] of entries) {
       lodashSet(this.items, name, val)
@@ -113,9 +144,13 @@ export class Config<T = any> extends Proxiable {
    * @param value - The value to set as default.
    * @returns The current Config instance.
    */
-  public add<V>(key: PropertyKey, value: V): this {
-    if (this.has(key) && isObjectLike(this.get(key)) && isObjectLike(value)) {
-      lodashMergeWith(value, this.get(key))
+  public add<TValue>(key: PropertyKey, value: TValue): this {
+    const items = this.get(key)
+
+    if (Array.isArray(items)) {
+      return this.set(key, items.concat(value))
+    } else if (isObjectLike(items) && isObjectLike(value)) {
+      return this.set(key, deepmerge(items as Record<PropertyKey, unknown>, value as Record<PropertyKey, unknown>))
     }
 
     return this.set(key, value)
@@ -126,7 +161,7 @@ export class Config<T = any> extends Proxiable {
    *
    * @returns All configuration items.
    */
-  public all (): ConfigItems<T> {
+  public all (): TObject {
     return this.items
   }
 
