@@ -1,11 +1,16 @@
 # Changelog
 
-All notable changes to the "Stone.js Env" extension will be documented in this file.
-
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+All notable changes to the "Stone.js Config" extension will be documented in this file.
 
 ## Unreleased
 
+
+## [0.0.34](https://github.com/stonemjs/config/compare/v0.0.33...v0.0.34) (2025-01-04)
+
+
+### Miscellaneous Chores
+
+* improve Config typings ([305ae64](https://github.com/stonemjs/config/commit/305ae64900ea613c92989a4d2c1c90d8544a4005))
 
 ## [0.0.33](https://github.com/stonemjs/config/compare/v0.0.32...v0.0.33) (2024-11-19)
 
