@@ -1,10 +1,12 @@
-[**Config Documentation v0.0.33**](../../README.md) • **Docs**
+[**Config Documentation v0.0.34**](../../README.md)
 
 ***
 
-[Config Documentation v0.0.33](../../modules.md) / [Config](../README.md) / Config
+[Config Documentation](../../modules.md) / [Config](../README.md) / Config
 
 # Class: Config\<TObject\>
+
+Defined in: [Config.ts:12](https://github.com/stonemjs/config/blob/9be61995a958657770c72169e48fe219d9d43742/src/Config.ts#L12)
 
 Class representing a Config.
 
@@ -26,11 +28,15 @@ Mr. Stone <evensstone@gmail.com>
 
 > `protected` **new Config**\<`TObject`\>(`items`?): [`Config`](Config.md)\<`TObject`\>
 
+Defined in: [Config.ts:30](https://github.com/stonemjs/config/blob/9be61995a958657770c72169e48fe219d9d43742/src/Config.ts#L30)
+
 Create a Config.
 
 #### Parameters
 
-• **items?**: `any`
+##### items?
+
+`any`
 
 Initial configuration items.
 
@@ -42,15 +48,13 @@ Initial configuration items.
 
 [`Proxiable`](../../Proxiable/classes/Proxiable.md).[`constructor`](../../Proxiable/classes/Proxiable.md#constructors)
 
-#### Defined in
-
-[Config.ts:30](https://github.com/stonemjs/config/blob/766b91d24a20493da66397081634b102901d3c54/src/Config.ts#L30)
-
 ## Methods
 
 ### add()
 
 > **add**\<`TValue`\>(`key`, `value`): `this`
+
+Defined in: [Config.ts:147](https://github.com/stonemjs/config/blob/9be61995a958657770c72169e48fe219d9d43742/src/Config.ts#L147)
 
 Allows providers to define the default config for a module.
 
@@ -60,11 +64,15 @@ Allows providers to define the default config for a module.
 
 #### Parameters
 
-• **key**: `PropertyKey`
+##### key
+
+`PropertyKey`
 
 The key or keys to set as defaults.
 
-• **value**: `TValue`
+##### value
+
+`TValue`
 
 The value to set as default.
 
@@ -74,15 +82,13 @@ The value to set as default.
 
 The current Config instance.
 
-#### Defined in
-
-[Config.ts:147](https://github.com/stonemjs/config/blob/766b91d24a20493da66397081634b102901d3c54/src/Config.ts#L147)
-
 ***
 
 ### all()
 
 > **all**(): `TObject`
+
+Defined in: [Config.ts:164](https://github.com/stonemjs/config/blob/9be61995a958657770c72169e48fe219d9d43742/src/Config.ts#L164)
 
 Get all of the configuration items as a literal object.
 
@@ -92,15 +98,13 @@ Get all of the configuration items as a literal object.
 
 All configuration items.
 
-#### Defined in
-
-[Config.ts:164](https://github.com/stonemjs/config/blob/766b91d24a20493da66397081634b102901d3c54/src/Config.ts#L164)
-
 ***
 
 ### clear()
 
 > **clear**(): `this`
+
+Defined in: [Config.ts:173](https://github.com/stonemjs/config/blob/9be61995a958657770c72169e48fe219d9d43742/src/Config.ts#L173)
 
 Clear all of the configuration items.
 
@@ -109,10 +113,6 @@ Clear all of the configuration items.
 `this`
 
 The current Config instance.
-
-#### Defined in
-
-[Config.ts:173](https://github.com/stonemjs/config/blob/766b91d24a20493da66397081634b102901d3c54/src/Config.ts#L173)
 
 ***
 
@@ -128,9 +128,11 @@ An array of keys to check.
 
 The fallback value if no key matches.
 
-#### firstMatch(keys)
+#### Call Signature
 
 > **firstMatch**\<`TReturn`\>(`keys`): `undefined` \| `TReturn`
+
+Defined in: [Config.ts:78](https://github.com/stonemjs/config/blob/9be61995a958657770c72169e48fe219d9d43742/src/Config.ts#L78)
 
 Get the first match configuration value.
 
@@ -140,7 +142,9 @@ Get the first match configuration value.
 
 ##### Parameters
 
-• **keys**: `PropertyKey`[]
+###### keys
+
+`PropertyKey`[]
 
 An array of keys to check.
 
@@ -160,13 +164,11 @@ An array of keys to check.
 
 The fallback value if no key matches.
 
-##### Defined in
-
-[Config.ts:78](https://github.com/stonemjs/config/blob/766b91d24a20493da66397081634b102901d3c54/src/Config.ts#L78)
-
-#### firstMatch(keys, fallback)
+#### Call Signature
 
 > **firstMatch**\<`TReturn`\>(`keys`, `fallback`): `TReturn`
+
+Defined in: [Config.ts:87](https://github.com/stonemjs/config/blob/9be61995a958657770c72169e48fe219d9d43742/src/Config.ts#L87)
 
 Get the first match configuration value.
 
@@ -176,11 +178,15 @@ Get the first match configuration value.
 
 ##### Parameters
 
-• **keys**: `PropertyKey`[]
+###### keys
+
+`PropertyKey`[]
 
 An array of keys to check.
 
-• **fallback**: `TReturn`
+###### fallback
+
+`TReturn`
 
 The fallback value if no key matches.
 
@@ -199,10 +205,6 @@ An array of keys to check.
 ##### Param
 
 The fallback value if no key matches.
-
-##### Defined in
-
-[Config.ts:87](https://github.com/stonemjs/config/blob/766b91d24a20493da66397081634b102901d3c54/src/Config.ts#L87)
 
 ***
 
@@ -218,9 +220,11 @@ The key or keys to retrieve from the configuration.
 
 The fallback value if the key does not exist.
 
-#### get(key)
+#### Call Signature
 
 > **get**\<`TReturn`\>(`key`): `undefined` \| `TReturn`
+
+Defined in: [Config.ts:50](https://github.com/stonemjs/config/blob/9be61995a958657770c72169e48fe219d9d43742/src/Config.ts#L50)
 
 Get the specified configuration value.
 
@@ -230,7 +234,9 @@ Get the specified configuration value.
 
 ##### Parameters
 
-• **key**: `PropertyKey`
+###### key
+
+`PropertyKey`
 
 The key or keys to retrieve from the configuration.
 
@@ -250,13 +256,11 @@ The key or keys to retrieve from the configuration.
 
 The fallback value if the key does not exist.
 
-##### Defined in
-
-[Config.ts:50](https://github.com/stonemjs/config/blob/766b91d24a20493da66397081634b102901d3c54/src/Config.ts#L50)
-
-#### get(key, fallback)
+#### Call Signature
 
 > **get**\<`TReturn`\>(`key`, `fallback`): `TReturn`
+
+Defined in: [Config.ts:59](https://github.com/stonemjs/config/blob/9be61995a958657770c72169e48fe219d9d43742/src/Config.ts#L59)
 
 Get the specified configuration value.
 
@@ -266,11 +270,15 @@ Get the specified configuration value.
 
 ##### Parameters
 
-• **key**: `PropertyKey`
+###### key
+
+`PropertyKey`
 
 The key or keys to retrieve from the configuration.
 
-• **fallback**: `TReturn`
+###### fallback
+
+`TReturn`
 
 The fallback value if the key does not exist.
 
@@ -290,15 +298,13 @@ The key or keys to retrieve from the configuration.
 
 The fallback value if the key does not exist.
 
-##### Defined in
-
-[Config.ts:59](https://github.com/stonemjs/config/blob/766b91d24a20493da66397081634b102901d3c54/src/Config.ts#L59)
-
 ***
 
 ### getMany()
 
 > **getMany**\<`TReturn`\>(`keys`): `TReturn`
+
+Defined in: [Config.ts:107](https://github.com/stonemjs/config/blob/9be61995a958657770c72169e48fe219d9d43742/src/Config.ts#L107)
 
 Get many configuration values.
 
@@ -308,9 +314,11 @@ Get many configuration values.
 
 #### Parameters
 
-• **keys**: `Record`\<`PropertyKey`, `unknown`\> \| `PropertyKey`[]
+##### keys
 
 The keys to retrieve from the configuration.
+
+`Record`\<`PropertyKey`, `unknown`\> | `PropertyKey`[]
 
 #### Returns
 
@@ -318,23 +326,23 @@ The keys to retrieve from the configuration.
 
 An object containing the requested configuration values.
 
-#### Defined in
-
-[Config.ts:107](https://github.com/stonemjs/config/blob/766b91d24a20493da66397081634b102901d3c54/src/Config.ts#L107)
-
 ***
 
 ### has()
 
 > **has**(`key`): `boolean`
 
+Defined in: [Config.ts:119](https://github.com/stonemjs/config/blob/9be61995a958657770c72169e48fe219d9d43742/src/Config.ts#L119)
+
 Determine if the given configuration value exists.
 
 #### Parameters
 
-• **key**: `PropertyKey` \| `PropertyKey`[]
+##### key
 
 The key or keys to check.
+
+`PropertyKey` | `PropertyKey`[]
 
 #### Returns
 
@@ -342,15 +350,13 @@ The key or keys to check.
 
 True if the key exists, false otherwise.
 
-#### Defined in
-
-[Config.ts:119](https://github.com/stonemjs/config/blob/766b91d24a20493da66397081634b102901d3c54/src/Config.ts#L119)
-
 ***
 
 ### set()
 
 > **set**\<`TValue`\>(`key`, `value`?): `this`
+
+Defined in: [Config.ts:130](https://github.com/stonemjs/config/blob/9be61995a958657770c72169e48fe219d9d43742/src/Config.ts#L130)
 
 Set a given configuration value.
 
@@ -360,11 +366,15 @@ Set a given configuration value.
 
 #### Parameters
 
-• **key**: `PropertyKey` \| `Record`\<`PropertyKey`, `unknown`\> \| `PropertyKey`[]
+##### key
 
 The key or keys to set in the configuration.
 
-• **value?**: `TValue`
+`PropertyKey` | `Record`\<`PropertyKey`, `unknown`\> | `PropertyKey`[]
+
+##### value?
+
+`TValue`
 
 The value to set.
 
@@ -374,15 +384,13 @@ The value to set.
 
 The current Config instance.
 
-#### Defined in
-
-[Config.ts:130](https://github.com/stonemjs/config/blob/766b91d24a20493da66397081634b102901d3c54/src/Config.ts#L130)
-
 ***
 
 ### create()
 
 > `static` **create**\<`TObject`\>(`items`?): [`Config`](Config.md)\<`TObject`\>
+
+Defined in: [Config.ts:21](https://github.com/stonemjs/config/blob/9be61995a958657770c72169e48fe219d9d43742/src/Config.ts#L21)
 
 Create a Config.
 
@@ -392,7 +400,9 @@ Create a Config.
 
 #### Parameters
 
-• **items?**: `TObject`
+##### items?
+
+`TObject`
 
 Initial configuration items.
 
@@ -401,7 +411,3 @@ Initial configuration items.
 [`Config`](Config.md)\<`TObject`\>
 
 A new Config instance.
-
-#### Defined in
-
-[Config.ts:21](https://github.com/stonemjs/config/blob/766b91d24a20493da66397081634b102901d3c54/src/Config.ts#L21)

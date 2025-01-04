@@ -1,13 +1,11 @@
-[**Config Documentation v0.0.33**](../README.md) • **Docs**
+[**Config Documentation v0.0.34**](../README.md)
 
 ***
 
-[Config Documentation v0.0.33](../modules.md) / Proxiable
+[Config Documentation](../modules.md) / Proxiable
 
 # Proxiable
 
-## Index
-
-### Classes
+## Classes
 
 - [Proxiable](classes/Proxiable.md)

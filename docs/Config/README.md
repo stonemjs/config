@@ -1,13 +1,11 @@
-[**Config Documentation v0.0.33**](../README.md) • **Docs**
+[**Config Documentation v0.0.34**](../README.md)
 
 ***
 
-[Config Documentation v0.0.33](../modules.md) / Config
+[Config Documentation](../modules.md) / Config
 
 # Config
 
-## Index
-
-### Classes
+## Classes
 
 - [Config](classes/Config.md)
