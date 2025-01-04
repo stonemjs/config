@@ -54,8 +54,9 @@ describe('Config', () => {
   })
 
   it('should merge object value when exists', () => {
-    config.add('nested', { key2: 'default6' })
-    expect(config.get('nested')).toEqual({ key: 'nestedValue', key2: 'default6' })
+    config.add('nested', { key2: ['default6'] })
+    config.add('nested.key2', 'default7')
+    expect(config.get('nested')).toEqual({ key: 'nestedValue', key2: ['default6', 'default7'] })
     config.add('setting1', 'newDefault')
     expect(config.get('setting1')).toBe('newDefault')
   })
