@@ -127,7 +127,7 @@ export class Config<TObject extends object = Record<PropertyKey, unknown>> exten
    * @param value - The value to set.
    * @returns The current Config instance.
    */
-  public set<TValue>(key: PropertyKey | PropertyKey[] | Record<PropertyKey, unknown>, value?: TValue): this {
+  public set<TValue>(key: PropertyKey | PropertyKey[] | Record<PropertyKey, TValue>, value?: TValue): this {
     const entries: Array<[PropertyKey | PropertyKey[], unknown]> = !Array.isArray(key) && typeof key === 'object' ? Object.entries(key) : [[key, value]]
 
     for (const [name, val] of entries) {
