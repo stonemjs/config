@@ -5,6 +5,13 @@ All notable changes to the "Stone.js Config" extension will be documented in thi
 ## Unreleased
 
 
+## [0.0.35](https://github.com/stonemjs/config/compare/v0.0.34...v0.0.35) (2025-01-06)
+
+
+### Bug Fixes
+
+* fix set method typing ([101ae9d](https://github.com/stonemjs/config/commit/101ae9d1f7f77917a43192098f91926284ad4a61))
+
 ## [0.0.34](https://github.com/stonemjs/config/compare/v0.0.33...v0.0.34) (2025-01-04)
 
 
