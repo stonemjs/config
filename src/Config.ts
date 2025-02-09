@@ -138,6 +138,17 @@ export class Config<TObject extends object = Record<PropertyKey, unknown>> exten
   }
 
   /**
+   * Set a given configuration value if it does not exist.
+   *
+   * @param key - The key or keys to set in the configuration.
+   * @param value - The value to set.
+   * @returns The current Config instance.
+   */
+  public setIf<TValue>(key: PropertyKey | PropertyKey[], value?: TValue): this {
+    return this.has(key) ? this : this.set(key, value)
+  }
+
+  /**
    * Allows providers to define the default config for a module.
    *
    * @param key - The key or keys to set as defaults.
@@ -154,6 +165,17 @@ export class Config<TObject extends object = Record<PropertyKey, unknown>> exten
     }
 
     return this.set(key, value)
+  }
+
+  /**
+   * Set all of the configuration items.
+   *
+   * @param items - The configuration items.
+   * @returns The current Config instance.
+   */
+  setItems (items: TObject): this {
+    this.items = { ...items }
+    return this
   }
 
   /**

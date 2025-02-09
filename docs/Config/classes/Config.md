@@ -6,7 +6,7 @@
 
 # Class: Config\<TObject\>
 
-Defined in: [Config.ts:12](https://github.com/stonemjs/config/blob/ccbb9f9cdf92ce324f4e87410067b6f9e4a18f3f/src/Config.ts#L12)
+Defined in: [Config.ts:12](https://github.com/stonemjs/config/blob/101ae9d1f7f77917a43192098f91926284ad4a61/src/Config.ts#L12)
 
 Class representing a Config.
 
@@ -28,7 +28,7 @@ Mr. Stone <evensstone@gmail.com>
 
 > `protected` **new Config**\<`TObject`\>(`items`?): [`Config`](Config.md)\<`TObject`\>
 
-Defined in: [Config.ts:30](https://github.com/stonemjs/config/blob/ccbb9f9cdf92ce324f4e87410067b6f9e4a18f3f/src/Config.ts#L30)
+Defined in: [Config.ts:30](https://github.com/stonemjs/config/blob/101ae9d1f7f77917a43192098f91926284ad4a61/src/Config.ts#L30)
 
 Create a Config.
 
@@ -54,7 +54,7 @@ Initial configuration items.
 
 > **add**\<`TValue`\>(`key`, `value`): `this`
 
-Defined in: [Config.ts:147](https://github.com/stonemjs/config/blob/ccbb9f9cdf92ce324f4e87410067b6f9e4a18f3f/src/Config.ts#L147)
+Defined in: [Config.ts:158](https://github.com/stonemjs/config/blob/101ae9d1f7f77917a43192098f91926284ad4a61/src/Config.ts#L158)
 
 Allows providers to define the default config for a module.
 
@@ -88,7 +88,7 @@ The current Config instance.
 
 > **all**(): `TObject`
 
-Defined in: [Config.ts:164](https://github.com/stonemjs/config/blob/ccbb9f9cdf92ce324f4e87410067b6f9e4a18f3f/src/Config.ts#L164)
+Defined in: [Config.ts:186](https://github.com/stonemjs/config/blob/101ae9d1f7f77917a43192098f91926284ad4a61/src/Config.ts#L186)
 
 Get all of the configuration items as a literal object.
 
@@ -104,7 +104,7 @@ All configuration items.
 
 > **clear**(): `this`
 
-Defined in: [Config.ts:173](https://github.com/stonemjs/config/blob/ccbb9f9cdf92ce324f4e87410067b6f9e4a18f3f/src/Config.ts#L173)
+Defined in: [Config.ts:195](https://github.com/stonemjs/config/blob/101ae9d1f7f77917a43192098f91926284ad4a61/src/Config.ts#L195)
 
 Clear all of the configuration items.
 
@@ -132,7 +132,7 @@ The fallback value if no key matches.
 
 > **firstMatch**\<`TReturn`\>(`keys`): `undefined` \| `TReturn`
 
-Defined in: [Config.ts:78](https://github.com/stonemjs/config/blob/ccbb9f9cdf92ce324f4e87410067b6f9e4a18f3f/src/Config.ts#L78)
+Defined in: [Config.ts:78](https://github.com/stonemjs/config/blob/101ae9d1f7f77917a43192098f91926284ad4a61/src/Config.ts#L78)
 
 Get the first match configuration value.
 
@@ -168,7 +168,7 @@ The fallback value if no key matches.
 
 > **firstMatch**\<`TReturn`\>(`keys`, `fallback`): `TReturn`
 
-Defined in: [Config.ts:87](https://github.com/stonemjs/config/blob/ccbb9f9cdf92ce324f4e87410067b6f9e4a18f3f/src/Config.ts#L87)
+Defined in: [Config.ts:87](https://github.com/stonemjs/config/blob/101ae9d1f7f77917a43192098f91926284ad4a61/src/Config.ts#L87)
 
 Get the first match configuration value.
 
@@ -224,7 +224,7 @@ The fallback value if the key does not exist.
 
 > **get**\<`TReturn`\>(`key`): `undefined` \| `TReturn`
 
-Defined in: [Config.ts:50](https://github.com/stonemjs/config/blob/ccbb9f9cdf92ce324f4e87410067b6f9e4a18f3f/src/Config.ts#L50)
+Defined in: [Config.ts:50](https://github.com/stonemjs/config/blob/101ae9d1f7f77917a43192098f91926284ad4a61/src/Config.ts#L50)
 
 Get the specified configuration value.
 
@@ -260,7 +260,7 @@ The fallback value if the key does not exist.
 
 > **get**\<`TReturn`\>(`key`, `fallback`): `TReturn`
 
-Defined in: [Config.ts:59](https://github.com/stonemjs/config/blob/ccbb9f9cdf92ce324f4e87410067b6f9e4a18f3f/src/Config.ts#L59)
+Defined in: [Config.ts:59](https://github.com/stonemjs/config/blob/101ae9d1f7f77917a43192098f91926284ad4a61/src/Config.ts#L59)
 
 Get the specified configuration value.
 
@@ -304,7 +304,7 @@ The fallback value if the key does not exist.
 
 > **getMany**\<`TReturn`\>(`keys`): `TReturn`
 
-Defined in: [Config.ts:107](https://github.com/stonemjs/config/blob/ccbb9f9cdf92ce324f4e87410067b6f9e4a18f3f/src/Config.ts#L107)
+Defined in: [Config.ts:107](https://github.com/stonemjs/config/blob/101ae9d1f7f77917a43192098f91926284ad4a61/src/Config.ts#L107)
 
 Get many configuration values.
 
@@ -332,7 +332,7 @@ An object containing the requested configuration values.
 
 > **has**(`key`): `boolean`
 
-Defined in: [Config.ts:119](https://github.com/stonemjs/config/blob/ccbb9f9cdf92ce324f4e87410067b6f9e4a18f3f/src/Config.ts#L119)
+Defined in: [Config.ts:119](https://github.com/stonemjs/config/blob/101ae9d1f7f77917a43192098f91926284ad4a61/src/Config.ts#L119)
 
 Determine if the given configuration value exists.
 
@@ -356,7 +356,7 @@ True if the key exists, false otherwise.
 
 > **set**\<`TValue`\>(`key`, `value`?): `this`
 
-Defined in: [Config.ts:130](https://github.com/stonemjs/config/blob/ccbb9f9cdf92ce324f4e87410067b6f9e4a18f3f/src/Config.ts#L130)
+Defined in: [Config.ts:130](https://github.com/stonemjs/config/blob/101ae9d1f7f77917a43192098f91926284ad4a61/src/Config.ts#L130)
 
 Set a given configuration value.
 
@@ -386,11 +386,69 @@ The current Config instance.
 
 ***
 
+### setIf()
+
+> **setIf**\<`TValue`\>(`key`, `value`?): `this`
+
+Defined in: [Config.ts:147](https://github.com/stonemjs/config/blob/101ae9d1f7f77917a43192098f91926284ad4a61/src/Config.ts#L147)
+
+Set a given configuration value if it does not exist.
+
+#### Type Parameters
+
+• **TValue**
+
+#### Parameters
+
+##### key
+
+The key or keys to set in the configuration.
+
+`PropertyKey` | `PropertyKey`[]
+
+##### value?
+
+`TValue`
+
+The value to set.
+
+#### Returns
+
+`this`
+
+The current Config instance.
+
+***
+
+### setItems()
+
+> **setItems**(`items`): `this`
+
+Defined in: [Config.ts:176](https://github.com/stonemjs/config/blob/101ae9d1f7f77917a43192098f91926284ad4a61/src/Config.ts#L176)
+
+Set all of the configuration items.
+
+#### Parameters
+
+##### items
+
+`TObject`
+
+The configuration items.
+
+#### Returns
+
+`this`
+
+The current Config instance.
+
+***
+
 ### create()
 
 > `static` **create**\<`TObject`\>(`items`?): [`Config`](Config.md)\<`TObject`\>
 
-Defined in: [Config.ts:21](https://github.com/stonemjs/config/blob/ccbb9f9cdf92ce324f4e87410067b6f9e4a18f3f/src/Config.ts#L21)
+Defined in: [Config.ts:21](https://github.com/stonemjs/config/blob/101ae9d1f7f77917a43192098f91926284ad4a61/src/Config.ts#L21)
 
 Create a Config.
 
