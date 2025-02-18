@@ -23,6 +23,16 @@ export class Config<TObject extends object = Record<PropertyKey, unknown>> exten
   }
 
   /**
+   * Create a Config from a JSON string.
+   *
+   * @param items - The JSON string to create the Config from.
+   * @returns A new Config instance.
+   */
+  static fromJson<TObject extends object = Record<PropertyKey, unknown>>(items: string): Config<TObject> {
+    return new this(JSON.parse(items))
+  }
+
+  /**
    * Create a Config.
    *
    * @param items - Initial configuration items.
@@ -173,7 +183,7 @@ export class Config<TObject extends object = Record<PropertyKey, unknown>> exten
    * @param items - The configuration items.
    * @returns The current Config instance.
    */
-  setItems (items: TObject): this {
+  public setItems (items: TObject): this {
     this.items = { ...items }
     return this
   }
@@ -185,6 +195,15 @@ export class Config<TObject extends object = Record<PropertyKey, unknown>> exten
    */
   public all (): TObject {
     return this.items
+  }
+
+  /**
+   * Get all of the configuration items as a JSON string.
+   *
+   * @returns All configuration items as a JSON string.
+   */
+  public toJson (): string {
+    return JSON.stringify(this.items)
   }
 
   /**
