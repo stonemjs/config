@@ -47,6 +47,11 @@ describe('Config', () => {
     expect(config.get('setting3')).toBe('value3')
   })
 
+  it('should merge pojo when already exist', () => {
+    config.set({ nested: { key2: 'newValue' } })
+    expect(config.get('nested')).toEqual({ key: 'nestedValue', key2: 'newValue' })
+  })
+
   it('should set multiple configuration values', () => {
     config.set({ setting4: 'value4', setting5: 'value5' })
     expect(config.get('setting4')).toBe('value4')
@@ -74,5 +79,41 @@ describe('Config', () => {
   it('should clear all configuration items', () => {
     config.clear()
     expect(config.all()).toEqual({})
+  })
+
+  it('should create a Config instance from JSON string', () => {
+    const json = JSON.stringify({ setting: 'jsonValue' })
+    const jsonConfig = Config.fromJson(json)
+    expect(jsonConfig.get('setting')).toBe('jsonValue')
+  })
+
+  it('should return true if the value matches using is()', () => {
+    expect(config.is('setting1', 'value1')).toBe(true)
+    expect(config.is('setting1', 'wrongValue')).toBe(false)
+  })
+
+  it('should not overwrite existing key with setIf', () => {
+    config.setIf('setting1', 'newValue')
+    expect(config.get('setting1')).toBe('value1') // original remains
+  })
+
+  it('should set key if it does not exist with setIf', () => {
+    config.setIf('newKey', 'newValue')
+    expect(config.get('newKey')).toBe('newValue')
+  })
+
+  it('should replace all items with setItems()', () => {
+    config.setItems({ newSetting: 123 })
+    expect(config.get('newSetting')).toBe(123)
+    expect(config.get('setting1')).toBeUndefined()
+  })
+
+  it('should serialize configuration to JSON string', () => {
+    expect(config.toJson()).toBe(JSON.stringify(config.all()))
+  })
+
+  it('should fallback to get() via proxy when accessing undefined property', () => {
+    expect((config as any)['nested.key']).toBe('nestedValue') // triggers get('nested.key')
+    expect((config as any).nonExisting).toBeUndefined()
   })
 })

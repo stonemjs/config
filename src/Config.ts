@@ -131,17 +131,35 @@ export class Config<TObject extends object = Record<PropertyKey, unknown>> exten
   }
 
   /**
+   * Check if the given configuration value is equal to the specified value.
+   *
+   * @param key - The key to check.
+   * @param value - The value to compare against.
+   * @returns True if the key's value is equal to the specified value, false otherwise.
+   */
+  public is (key: PropertyKey, value: unknown): boolean {
+    return this.get(key) === value
+  }
+
+  /**
    * Set a given configuration value.
    *
    * @param key - The key or keys to set in the configuration.
    * @param value - The value to set.
    * @returns The current Config instance.
    */
-  public set<TValue>(key: PropertyKey | PropertyKey[] | Record<PropertyKey, TValue>, value?: TValue): this {
-    const entries: Array<[PropertyKey | PropertyKey[], unknown]> = !Array.isArray(key) && typeof key === 'object' ? Object.entries(key) : [[key, value]]
-
-    for (const [name, val] of entries) {
-      lodashSet(this.items, name, val)
+  public set<TValue>(key: PropertyKey | PropertyKey[] | Record<string, TValue> | Record<PropertyKey, TValue>, value?: TValue): this {
+    if (!Array.isArray(key) && typeof key === 'object') {
+      Object.entries(key).forEach(([name, val]) => {
+        const items = this.get(name)
+        if (isObjectLike(items)) {
+          lodashSet(this.items, name, deepmerge(items as Record<PropertyKey, unknown>, val as Record<PropertyKey, unknown>))
+        } else {
+          lodashSet(this.items, name, val)
+        }
+      })
+    } else {
+      lodashSet(this.items, key, value)
     }
 
     return this
@@ -159,7 +177,7 @@ export class Config<TObject extends object = Record<PropertyKey, unknown>> exten
   }
 
   /**
-   * Allows providers to define the default config for a module.
+   * Add a value to an existing configuration key.
    *
    * @param key - The key or keys to set as defaults.
    * @param value - The value to set as default.

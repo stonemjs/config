@@ -1,6 +1,6 @@
 # Stone.js: Config
 
-[![npm](https://img.shields.io/npm/l/@stone-js/config)](https://opensource.org/licenses/Apache-2.0)
+[![npm](https://img.shields.io/npm/l/@stone-js/config)](https://opensource.org/licenses/MIT)
 [![npm](https://img.shields.io/npm/v/@stone-js/config)](https://www.npmjs.com/package/@stone-js/config)
 [![npm](https://img.shields.io/npm/dm/@stone-js/config)](https://www.npmjs.com/package/@stone-js/config)
 ![Maintenance](https://img.shields.io/maintenance/yes/2025)
@@ -8,171 +8,169 @@
 [![Dependabot Status](https://img.shields.io/badge/Dependabot-enabled-brightgreen.svg?logo=dependabot)](https://github.com/stonemjs/config/network/updates)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
-Fluent and simple API with deep dot access to manage configurations in any JavaScript project.
+Fluent and type-safe configuration management with deep property access, merging, and dynamic proxy fallback.
 
 ---
 
-## Synopsis
+## Overview
 
-`@stone-js/config` is a versatile configuration management library that supports both vanilla JavaScript and TypeScript. It allows developers to easily manage application settings with features like nested configuration access, default value management, and proxy-based custom behavior for configuration properties.
+`@stone-js/config` provides a smart, fluent API to manage application settings in any JavaScript or TypeScript project.
+
+- 🔍 Deep property access (`config.get('nested.key')`)
+- 🧠 Automatic fallback via Proxy (`config.someKey`)
+- 📦 Merge strategies for objects and arrays
+- ⚙️ Default value support, `getMany()`, `firstMatch()`, etc.
+- 🧪 Fully tested with 100% coverage
 
 ## Installation
 
-The `Config` library is available from the [`npm registry`](https://www.npmjs.com/) and can be installed as follows:
+Install using your preferred package manager:
 
 ```bash
 npm i @stone-js/config
-```
-
-Yarn:
-
-```bash
+# or
 yarn add @stone-js/config
-```
-
-PNPM:
-
-```bash
+# or
 pnpm add @stone-js/config
-```
+````
 
-> [!NOTE]
-> This package is Pure ESM. If you are unfamiliar with what that means or how to handle it in your project, 
-> please refer to [`this guide on Pure ESM packages`](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c).
+> ℹ️ **Note:** This package is **pure ESM**. Use `import` syntax and ensure your environment supports ESM.
+> See: [Pure ESM Guide](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c)
 
-Make sure your project setup is compatible with ESM. This might involve updating your `package.json` or using certain bundler configurations.
-
-The `Config` module can only be imported via ESM import syntax:
-
-```typescript
-import { Config } from '@stone-js/config';
+```ts
+import { Config } from '@stone-js/config'
 ```
 
 ## Getting Started
 
-The `Config` library is designed to simplify configuration management in JavaScript and TypeScript projects. The library provides a `Config` class that allows you to create, access, modify, and clear configuration values, while also providing utility methods for managing defaults and nested properties.
+### Create a Config instance
 
-The library is compatible with both vanilla JavaScript and TypeScript, providing strong type safety when used in TypeScript projects.
-
-## Usage
-
-### Importing the Library
-To use the `Config` library, import the `Config` class from the installed package:
-
-```typescript
-import { Config } from '@stone-js/config';
-```
-
-### Creating a Config Instance
-You can create a `Config` instance with an initial set of configuration values using the `Config.create()` method:
-
-```typescript
-import { Config } from '@stone-js/config';
-
+```ts
 const config = Config.create({
-  appName: 'MyApp',
-  settings: {
-    theme: 'dark',
-    notifications: true
-  }
-});
+  app: { name: 'MyApp', env: 'prod' },
+  features: { darkMode: true }
+})
 ```
 
-### Accessing Configuration Values
-You can access configuration values using the `get` method. The `get` method also allows you to specify a fallback value if the key does not exist:
+Or from JSON:
 
-```typescript
-console.log(config.get('appName')); // Outputs: 'MyApp'
-console.log(config.get('settings.theme')); // Outputs: 'dark'
-console.log(config.get('settings.language', 'en')); // Outputs: 'en' (fallback value)
+```ts
+const config = Config.fromJson('{ "enabled": true }')
 ```
 
-### Setting Configuration Values
-You can add or update configuration values using the `set` method:
+## Core API
 
-```typescript
-config.set('settings.theme', 'light');
-console.log(config.get('settings.theme')); // Outputs: 'light'
+### 🔍 Access values
+
+```ts
+config.get('app.name') // 'MyApp'
+config.get('missing.key') // undefined
+config.get('missing.key', 'default') // 'default'
 ```
 
-You can also set multiple values at once by passing an object:
+Proxy fallback also works:
 
-```typescript
-config.set({
-  'settings.language': 'fr',
-  'settings.notifications': false
-});
-console.log(config.get('settings.language')); // Outputs: 'fr'
+```ts
+config['app.env'] // 'prod'
 ```
 
-### Checking for Configuration Values
-To check if a particular configuration value exists, use the `has` method:
+### 🔐 Check existence
 
-```typescript
-console.log(config.has('settings.theme')); // Outputs: true
-console.log(config.has('settings.nonExistentKey')); // Outputs: false
+```ts
+config.has('features.darkMode') // true
 ```
 
-### Adding Configuration Values with Merge
-The `add` method allows you to add configuration values. If the key already exists and both values are objects, they will be merged:
+### 🧠 First match
 
-```typescript
-config.add('settings', { notifications: false });
-console.log(config.get('settings.notifications')); // Outputs: false
+```ts
+config.firstMatch(['missing', 'features.darkMode']) // true
+config.firstMatch(['none'], 'fallback') // 'fallback'
 ```
 
-### Getting the First Match Configuration Value
-The `firstMatch` method allows you to get the value of the first existing key from an array of keys:
+### 📦 Retrieve many keys
 
-```typescript
-const value = config.firstMatch(['nonExistentKey', 'settings.theme'], 'defaultTheme');
-console.log(value); // Outputs: 'light'
+```ts
+config.getMany(['app.name', 'features.darkMode'])
+// { 'app.name': 'MyApp', 'features.darkMode': true }
+
+config.getMany({ 'unknown': 'default' })
+// { unknown: 'default' }
 ```
 
-### Getting Multiple Configuration Values
-The `getMany` method allows you to get multiple configuration values at once:
+### ⚙️ Set values
 
-```typescript
-const values = config.getMany(['appName', 'settings.theme']);
-console.log(values); // Outputs: { appName: 'MyApp', 'settings.theme': 'light' }
+```ts
+config.set('app.name', 'NewApp')
+config.set({ 'app.env': 'dev', 'features.debug': true })
 ```
 
-### Clearing Configuration
-You can clear all configuration values using the `clear` method:
+### 🧬 Merge with `add()`
 
-```typescript
-config.clear();
-console.log(config.all()); // Outputs: {}
+```ts
+config.add('features', { beta: false })
+// merges into existing `features` object
+
+config.add('list', [1])
+config.add('list', 2)
+// appends to array if already exists
 ```
 
-### Working with Nested Properties
-The `Config` class supports accessing and setting nested properties. You can use dot-notation strings to manage nested properties effectively:
+### 📌 Set only if not exists
 
-```typescript
-console.log(config.get('settings.theme')); // Outputs: 'light'
-config.set('settings.newFeature.enabled', true);
-console.log(config.get('settings.newFeature.enabled')); // Outputs: true
+```ts
+config.setIf('features.darkMode', false) // won't overwrite
+config.setIf('newKey', 123) // will set
 ```
 
-## Summary
-The `@stone-js/config` library is a powerful and flexible solution for managing configuration in JavaScript and TypeScript applications. With support for nested properties, default value handling, and proxy-based custom behaviors, it provides a robust toolset for configuration management.
+### ✅ Check exact value
 
-Key Features:
-- **Simple API**: Easy to use methods for creating, accessing, and modifying configuration values.
-- **TypeScript Compatibility**: Full TypeScript support for type safety and better development experience.
-- **Nested Properties**: Seamless handling of nested configuration values.
-- **Default Value Management**: Easily set and manage default values for configuration keys.
+```ts
+config.is('app.env', 'prod') // true or false
+```
 
-Start using `@stone-js/config` to simplify your application's configuration management and bring flexibility and robustness to your codebase.
+### 🔄 Replace or reset all
 
-## API documentation
+```ts
+config.setItems({ reset: true })
+config.clear() // clears everything
+```
 
-- [API](https://github.com/stonemjs/config/blob/main/docs/modules.md)
+### 🧾 Export
+
+```ts
+config.all() // returns raw object
+config.toJson() // returns stringified version
+```
+
+## Full Example
+
+```ts
+const config = Config.create({ count: 1, nested: { flag: true } })
+
+config.set('nested.flag', false)
+config.add('nested', { added: 42 })
+config.setIf('newKey', 'set only once')
+
+console.log(config.get('nested.flag')) // false
+console.log(config.get('nested.added')) // 42
+console.log(config.get('newKey')) // 'set only once'
+
+console.log(config.toJson()) // '{"count":1,"nested":{"flag":false,"added":42},"newKey":"set only once"}'
+```
+
+## Why use `@stone-js/config`?
+
+* ✅ Fully tested (100% test coverage)
+* 💡 Deep access, merging, and proxy support
+* 🧩 Can replace many ad-hoc config patterns
+* 🧼 Clean design with extensibility in mind
+* 🔒 TypeScript-first
 
 ## Contributing
 
-See [Contributing Guide](https://github.com/stonemjs/config/blob/main/CONTRIBUTING.md).
+See [CONTRIBUTING.md](https://github.com/stonemjs/config/blob/main/CONTRIBUTING.md)
 
 ## Credits
-- [Lodash](https://github.com/lodash/lodash)
-- [Laravel Config](https://github.com/laravel/framework/blob/10.x/src/Illuminate/Config/Repository.php)
+
+* [Lodash](https://github.com/lodash/lodash) for deep utilities
+* Inspired by [Laravel Config](https://github.com/laravel/framework/blob/10.x/src/Illuminate/Config/Repository.php)
