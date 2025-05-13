@@ -1,8 +1,8 @@
-[**Config Documentation v0.0.34**](../README.md)
+[**Config Documentation**](../README.md)
 
 ***
 
-[Config Documentation](../modules.md) / Config
+[Config Documentation](../README.md) / Config
 
 # Config
 

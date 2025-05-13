@@ -23,6 +23,16 @@ export class Config<TObject extends object = Record<PropertyKey, unknown>> exten
   }
 
   /**
+   * Create a Config from a JSON string.
+   *
+   * @param items - The JSON string to create the Config from.
+   * @returns A new Config instance.
+   */
+  static fromJson<TObject extends object = Record<PropertyKey, unknown>>(items: string): Config<TObject> {
+    return new this(JSON.parse(items))
+  }
+
+  /**
    * Create a Config.
    *
    * @param items - Initial configuration items.
@@ -121,24 +131,53 @@ export class Config<TObject extends object = Record<PropertyKey, unknown>> exten
   }
 
   /**
+   * Check if the given configuration value is equal to the specified value.
+   *
+   * @param key - The key to check.
+   * @param value - The value to compare against.
+   * @returns True if the key's value is equal to the specified value, false otherwise.
+   */
+  public is (key: PropertyKey, value: unknown): boolean {
+    return this.get(key) === value
+  }
+
+  /**
    * Set a given configuration value.
    *
    * @param key - The key or keys to set in the configuration.
    * @param value - The value to set.
    * @returns The current Config instance.
    */
-  public set<TValue>(key: PropertyKey | PropertyKey[] | Record<PropertyKey, TValue>, value?: TValue): this {
-    const entries: Array<[PropertyKey | PropertyKey[], unknown]> = !Array.isArray(key) && typeof key === 'object' ? Object.entries(key) : [[key, value]]
-
-    for (const [name, val] of entries) {
-      lodashSet(this.items, name, val)
+  public set<TValue>(key: PropertyKey | PropertyKey[] | Record<string, TValue> | Record<PropertyKey, TValue>, value?: TValue): this {
+    if (!Array.isArray(key) && typeof key === 'object') {
+      Object.entries(key).forEach(([name, val]) => {
+        const items = this.get(name)
+        if (isObjectLike(items)) {
+          lodashSet(this.items, name, deepmerge(items as Record<PropertyKey, unknown>, val as Record<PropertyKey, unknown>))
+        } else {
+          lodashSet(this.items, name, val)
+        }
+      })
+    } else {
+      lodashSet(this.items, key, value)
     }
 
     return this
   }
 
   /**
-   * Allows providers to define the default config for a module.
+   * Set a given configuration value if it does not exist.
+   *
+   * @param key - The key or keys to set in the configuration.
+   * @param value - The value to set.
+   * @returns The current Config instance.
+   */
+  public setIf<TValue>(key: PropertyKey | PropertyKey[], value?: TValue): this {
+    return this.has(key) ? this : this.set(key, value)
+  }
+
+  /**
+   * Add a value to an existing configuration key.
    *
    * @param key - The key or keys to set as defaults.
    * @param value - The value to set as default.
@@ -157,12 +196,32 @@ export class Config<TObject extends object = Record<PropertyKey, unknown>> exten
   }
 
   /**
+   * Set all of the configuration items.
+   *
+   * @param items - The configuration items.
+   * @returns The current Config instance.
+   */
+  public setItems (items: TObject): this {
+    this.items = { ...items }
+    return this
+  }
+
+  /**
    * Get all of the configuration items as a literal object.
    *
    * @returns All configuration items.
    */
   public all (): TObject {
     return this.items
+  }
+
+  /**
+   * Get all of the configuration items as a JSON string.
+   *
+   * @returns All configuration items as a JSON string.
+   */
+  public toJson (): string {
+    return JSON.stringify(this.items)
   }
 
   /**
