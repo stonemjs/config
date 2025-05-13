@@ -5,6 +5,13 @@ All notable changes to the "Stone.js Config" extension will be documented in thi
 ## Unreleased
 
 
+## [0.1.0](https://github.com/stonemjs/config/compare/v0.0.35...v0.1.0) (2025-05-13)
+
+
+### Features
+
+* add setItems and setIf method to config and change the license to MIT ([4919740](https://github.com/stonemjs/config/commit/49197405b50a84a2323adc14016501cd90bfa402))
+
 ## [0.0.35](https://github.com/stonemjs/config/compare/v0.0.34...v0.0.35) (2025-01-06)
 
 
