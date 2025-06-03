@@ -131,7 +131,7 @@ config.setIf('newKey', 123) // will set
 config.is('app.env', 'prod') // true or false
 ```
 
-### 🔄 Replace or reset all
+### Replace or reset all
 
 ```ts
 config.setItems({ reset: true })
