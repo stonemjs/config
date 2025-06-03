@@ -1,11 +1,14 @@
-# Stone.js: Config
+# Stone.js - Config
 
 [![npm](https://img.shields.io/npm/l/@stone-js/config)](https://opensource.org/licenses/MIT)
 [![npm](https://img.shields.io/npm/v/@stone-js/config)](https://www.npmjs.com/package/@stone-js/config)
 [![npm](https://img.shields.io/npm/dm/@stone-js/config)](https://www.npmjs.com/package/@stone-js/config)
 ![Maintenance](https://img.shields.io/maintenance/yes/2025)
+[![Build Status](https://github.com/stonemjs/config/actions/workflows/main.yml/badge.svg)](https://github.com/stonemjs/config/actions/workflows/main.yml)
 [![Publish Package to npmjs](https://github.com/stonemjs/config/actions/workflows/release.yml/badge.svg)](https://github.com/stonemjs/config/actions/workflows/release.yml)
-[![Dependabot Status](https://img.shields.io/badge/Dependabot-enabled-brightgreen.svg?logo=dependabot)](https://github.com/stonemjs/config/network/updates)
+[![codecov](https://codecov.io/gh/stonemjs/config/graph/badge.svg?token=5MKS9179YL)](https://codecov.io/gh/stonemjs/config)
+[![CodeQL](https://github.com/stonemjs/config/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/stonemjs/config/security/code-scanning)
+[![Dependabot Status](https://img.shields.io/badge/Dependabot-enabled-brightgreen.svg)](https://github.com/stonemjs/config/network/updates)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
 Fluent and type-safe configuration management with deep property access, merging, and dynamic proxy fallback.
@@ -16,11 +19,11 @@ Fluent and type-safe configuration management with deep property access, merging
 
 `@stone-js/config` provides a smart, fluent API to manage application settings in any JavaScript or TypeScript project.
 
-- 🔍 Deep property access (`config.get('nested.key')`)
-- 🧠 Automatic fallback via Proxy (`config.someKey`)
-- 📦 Merge strategies for objects and arrays
-- ⚙️ Default value support, `getMany()`, `firstMatch()`, etc.
-- 🧪 Fully tested with 100% coverage
+- Deep property access (`config.get('nested.key')`)
+- Automatic fallback via Proxy (`config.someKey`)
+- Merge strategies for objects and arrays
+- Default value support, `get('name', 'fallback')`
+- Fully tested with 100% coverage
 
 ## Installation
 
@@ -34,7 +37,7 @@ yarn add @stone-js/config
 pnpm add @stone-js/config
 ````
 
-> ℹ️ **Note:** This package is **pure ESM**. Use `import` syntax and ensure your environment supports ESM.
+> **Note:** This package is **pure ESM**. Use `import` syntax and ensure your environment supports ESM.
 > See: [Pure ESM Guide](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c)
 
 ```ts
@@ -60,7 +63,7 @@ const config = Config.fromJson('{ "enabled": true }')
 
 ## Core API
 
-### 🔍 Access values
+### Access values
 
 ```ts
 config.get('app.name') // 'MyApp'
@@ -74,20 +77,20 @@ Proxy fallback also works:
 config['app.env'] // 'prod'
 ```
 
-### 🔐 Check existence
+### Check existence
 
 ```ts
 config.has('features.darkMode') // true
 ```
 
-### 🧠 First match
+### First match
 
 ```ts
 config.firstMatch(['missing', 'features.darkMode']) // true
 config.firstMatch(['none'], 'fallback') // 'fallback'
 ```
 
-### 📦 Retrieve many keys
+### Retrieve many keys
 
 ```ts
 config.getMany(['app.name', 'features.darkMode'])
@@ -97,14 +100,14 @@ config.getMany({ 'unknown': 'default' })
 // { unknown: 'default' }
 ```
 
-### ⚙️ Set values
+### Set values
 
 ```ts
 config.set('app.name', 'NewApp')
 config.set({ 'app.env': 'dev', 'features.debug': true })
 ```
 
-### 🧬 Merge with `add()`
+### Merge with `add()`
 
 ```ts
 config.add('features', { beta: false })
@@ -115,14 +118,14 @@ config.add('list', 2)
 // appends to array if already exists
 ```
 
-### 📌 Set only if not exists
+### Set only if not exists
 
 ```ts
 config.setIf('features.darkMode', false) // won't overwrite
 config.setIf('newKey', 123) // will set
 ```
 
-### ✅ Check exact value
+### Check exact value
 
 ```ts
 config.is('app.env', 'prod') // true or false
@@ -135,7 +138,7 @@ config.setItems({ reset: true })
 config.clear() // clears everything
 ```
 
-### 🧾 Export
+### Export
 
 ```ts
 config.all() // returns raw object
@@ -160,11 +163,25 @@ console.log(config.toJson()) // '{"count":1,"nested":{"flag":false,"added":42},"
 
 ## Why use `@stone-js/config`?
 
-* ✅ Fully tested (100% test coverage)
-* 💡 Deep access, merging, and proxy support
-* 🧩 Can replace many ad-hoc config patterns
-* 🧼 Clean design with extensibility in mind
-* 🔒 TypeScript-first
+* Fully tested (100% test coverage)
+* Deep access, merging, and proxy support
+* Can replace many ad-hoc config patterns
+* Clean design with extensibility in mind
+* TypeScript-first
+
+## Summary
+
+`@stone-js/config` is a powerful, type-safe configuration library that simplifies managing application settings. With its fluent API, deep property access, and dynamic proxy fallback, it provides a robust solution for any JavaScript or TypeScript project.
+
+## Learn More
+
+This package is part of the Stone.js ecosystem, a modern JavaScript framework built around the Continuum Architecture.
+
+Explore the full documentation: https://stonejs.com
+
+## API documentation
+
+* [API](https://github.com/stonemjs/config/blob/main/docs)
 
 ## Contributing
 
