@@ -31,7 +31,7 @@ jobs:
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          slug: stonemjs/pipeline
+          slug: stonemjs/config
 
   release-please:
     runs-on: ubuntu-latest
