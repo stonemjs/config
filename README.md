@@ -4,11 +4,13 @@
 [![npm](https://img.shields.io/npm/v/@stone-js/config)](https://www.npmjs.com/package/@stone-js/config)
 [![npm](https://img.shields.io/npm/dm/@stone-js/config)](https://www.npmjs.com/package/@stone-js/config)
 ![Maintenance](https://img.shields.io/maintenance/yes/2025)
-[![Build Status](https://github.com/stonemjs/config/actions/workflows/main.yml/badge.svg)](https://github.com/stonemjs/config/actions/workflows/main.yml)
-[![Publish Package to npmjs](https://github.com/stonemjs/config/actions/workflows/release.yml/badge.svg)](https://github.com/stonemjs/config/actions/workflows/release.yml)
-[![codecov](https://codecov.io/gh/stonemjs/config/graph/badge.svg?token=5MKS9179YL)](https://codecov.io/gh/stonemjs/config)
-[![CodeQL](https://github.com/stonemjs/config/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/stonemjs/config/security/code-scanning)
-[![Dependabot Status](https://img.shields.io/badge/Dependabot-enabled-brightgreen.svg)](https://github.com/stonemjs/config/network/updates)
+[![Build Status](https://github.com/stone-foundation/stone-js-config/actions/workflows/main.yml/badge.svg)](https://github.com/stone-foundation/stone-js-config/actions/workflows/main.yml)
+[![Publish Package to npmjs](https://github.com/stone-foundation/stone-js-config/actions/workflows/release.yml/badge.svg)](https://github.com/stone-foundation/stone-js-config/actions/workflows/release.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=stone-foundation_stone-js-config&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=stone-foundation_stone-js-config)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=stone-foundation_stone-js-config&metric=coverage)](https://sonarcloud.io/summary/new_code?id=stone-foundation_stone-js-config)
+[![Security Policy](https://img.shields.io/badge/Security-Policy-blue.svg)](./SECURITY.md)
+[![CodeQL](https://github.com/stone-foundation/stone-js-config/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/stone-foundation/stone-js-config/security/code-scanning)
+[![Dependabot Status](https://img.shields.io/badge/Dependabot-enabled-brightgreen.svg)](https://github.com/stone-foundation/stone-js-config/network/updates)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
 Fluent and type-safe configuration management with deep property access, merging, and dynamic proxy fallback.
@@ -37,8 +39,8 @@ yarn add @stone-js/config
 pnpm add @stone-js/config
 ````
 
-> **Note:** This package is **pure ESM**. Use `import` syntax and ensure your environment supports ESM.
-> See: [Pure ESM Guide](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c)
+> \[!IMPORTANT]
+> This package is **pure ESM**. Ensure your `package.json` includes `"type": "module"` or configure your bundler appropriately.
 
 ```ts
 import { Config } from '@stone-js/config'
@@ -177,15 +179,15 @@ console.log(config.toJson()) // '{"count":1,"nested":{"flag":false,"added":42},"
 
 This package is part of the Stone.js ecosystem, a modern JavaScript framework built around the Continuum Architecture.
 
-Explore the full documentation: https://stonejs.com
+Explore the full documentation: https://stonejs.dev
 
 ## API documentation
 
-* [API](https://github.com/stonemjs/config/blob/main/docs)
+* [API](https://github.com/stone-foundation/stone-js-config/blob/main/docs)
 
 ## Contributing
 
-See [CONTRIBUTING.md](https://github.com/stonemjs/config/blob/main/CONTRIBUTING.md)
+See [CONTRIBUTING.md](https://github.com/stone-foundation/stone-js-config/blob/main/CONTRIBUTING.md)
 
 ## Credits
 
