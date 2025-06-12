@@ -5,6 +5,13 @@ All notable changes to the "Stone.js Config" extension will be documented in thi
 ## Unreleased
 
 
+## [0.1.1](https://github.com/stone-foundation/stone-js-config/compare/v0.1.0...v0.1.1) (2025-06-12)
+
+
+### Documentation
+
+* fix typo ([#42](https://github.com/stone-foundation/stone-js-config/issues/42)) ([79ef468](https://github.com/stone-foundation/stone-js-config/commit/79ef4684e4e040ae06f519e0c0bfafd0c27c42e0))
+
 ## [0.1.0](https://github.com/stone-foundation/stone-js-config/compare/v0.0.35...v0.1.0) (2025-05-13)
 
 
