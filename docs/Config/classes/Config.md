@@ -6,7 +6,7 @@
 
 # Class: Config\<TObject\>
 
-Defined in: [Config.ts:12](https://github.com/stonemjs/config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L12)
+Defined in: [Config.ts:12](https://github.com/stone-foundation/stone-js-config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L12)
 
 Class representing a Config.
 
@@ -30,7 +30,7 @@ Mr. Stone <evensstone@gmail.com>
 
 > `protected` **new Config**\<`TObject`\>(`items?`): `Config`\<`TObject`\>
 
-Defined in: [Config.ts:40](https://github.com/stonemjs/config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L40)
+Defined in: [Config.ts:40](https://github.com/stone-foundation/stone-js-config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L40)
 
 Create a Config.
 
@@ -56,7 +56,7 @@ Initial configuration items.
 
 > **add**\<`TValue`\>(`key`, `value`): `this`
 
-Defined in: [Config.ts:186](https://github.com/stonemjs/config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L186)
+Defined in: [Config.ts:186](https://github.com/stone-foundation/stone-js-config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L186)
 
 Add a value to an existing configuration key.
 
@@ -92,7 +92,7 @@ The current Config instance.
 
 > **all**(): `TObject`
 
-Defined in: [Config.ts:214](https://github.com/stonemjs/config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L214)
+Defined in: [Config.ts:214](https://github.com/stone-foundation/stone-js-config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L214)
 
 Get all of the configuration items as a literal object.
 
@@ -108,7 +108,7 @@ All configuration items.
 
 > **clear**(): `this`
 
-Defined in: [Config.ts:232](https://github.com/stonemjs/config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L232)
+Defined in: [Config.ts:232](https://github.com/stone-foundation/stone-js-config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L232)
 
 Clear all of the configuration items.
 
@@ -136,7 +136,7 @@ The fallback value if no key matches.
 
 > **firstMatch**\<`TReturn`\>(`keys`): `undefined` \| `TReturn`
 
-Defined in: [Config.ts:88](https://github.com/stonemjs/config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L88)
+Defined in: [Config.ts:88](https://github.com/stone-foundation/stone-js-config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L88)
 
 Get the first match configuration value.
 
@@ -172,7 +172,7 @@ The fallback value if no key matches.
 
 > **firstMatch**\<`TReturn`\>(`keys`, `fallback`): `TReturn`
 
-Defined in: [Config.ts:97](https://github.com/stonemjs/config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L97)
+Defined in: [Config.ts:97](https://github.com/stone-foundation/stone-js-config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L97)
 
 Get the first match configuration value.
 
@@ -228,7 +228,7 @@ The fallback value if the key does not exist.
 
 > **get**\<`TReturn`\>(`key`): `undefined` \| `TReturn`
 
-Defined in: [Config.ts:60](https://github.com/stonemjs/config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L60)
+Defined in: [Config.ts:60](https://github.com/stone-foundation/stone-js-config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L60)
 
 Get the specified configuration value.
 
@@ -264,7 +264,7 @@ The fallback value if the key does not exist.
 
 > **get**\<`TReturn`\>(`key`, `fallback`): `TReturn`
 
-Defined in: [Config.ts:69](https://github.com/stonemjs/config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L69)
+Defined in: [Config.ts:69](https://github.com/stone-foundation/stone-js-config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L69)
 
 Get the specified configuration value.
 
@@ -308,7 +308,7 @@ The fallback value if the key does not exist.
 
 > **getMany**\<`TReturn`\>(`keys`): `TReturn`
 
-Defined in: [Config.ts:117](https://github.com/stonemjs/config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L117)
+Defined in: [Config.ts:117](https://github.com/stone-foundation/stone-js-config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L117)
 
 Get many configuration values.
 
@@ -338,7 +338,7 @@ An object containing the requested configuration values.
 
 > **has**(`key`): `boolean`
 
-Defined in: [Config.ts:129](https://github.com/stonemjs/config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L129)
+Defined in: [Config.ts:129](https://github.com/stone-foundation/stone-js-config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L129)
 
 Determine if the given configuration value exists.
 
@@ -362,7 +362,7 @@ True if the key exists, false otherwise.
 
 > **is**(`key`, `value`): `boolean`
 
-Defined in: [Config.ts:140](https://github.com/stonemjs/config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L140)
+Defined in: [Config.ts:140](https://github.com/stone-foundation/stone-js-config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L140)
 
 Check if the given configuration value is equal to the specified value.
 
@@ -392,7 +392,7 @@ True if the key's value is equal to the specified value, false otherwise.
 
 > **set**\<`TValue`\>(`key`, `value?`): `this`
 
-Defined in: [Config.ts:151](https://github.com/stonemjs/config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L151)
+Defined in: [Config.ts:151](https://github.com/stone-foundation/stone-js-config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L151)
 
 Set a given configuration value.
 
@@ -428,7 +428,7 @@ The current Config instance.
 
 > **setIf**\<`TValue`\>(`key`, `value?`): `this`
 
-Defined in: [Config.ts:175](https://github.com/stonemjs/config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L175)
+Defined in: [Config.ts:175](https://github.com/stone-foundation/stone-js-config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L175)
 
 Set a given configuration value if it does not exist.
 
@@ -464,7 +464,7 @@ The current Config instance.
 
 > **setItems**(`items`): `this`
 
-Defined in: [Config.ts:204](https://github.com/stonemjs/config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L204)
+Defined in: [Config.ts:204](https://github.com/stone-foundation/stone-js-config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L204)
 
 Set all of the configuration items.
 
@@ -488,7 +488,7 @@ The current Config instance.
 
 > **toJson**(): `string`
 
-Defined in: [Config.ts:223](https://github.com/stonemjs/config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L223)
+Defined in: [Config.ts:223](https://github.com/stone-foundation/stone-js-config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L223)
 
 Get all of the configuration items as a JSON string.
 
@@ -504,7 +504,7 @@ All configuration items as a JSON string.
 
 > `static` **create**\<`TObject`\>(`items?`): `Config`\<`TObject`\>
 
-Defined in: [Config.ts:21](https://github.com/stonemjs/config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L21)
+Defined in: [Config.ts:21](https://github.com/stone-foundation/stone-js-config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L21)
 
 Create a Config.
 
@@ -534,7 +534,7 @@ A new Config instance.
 
 > `static` **fromJson**\<`TObject`\>(`items`): `Config`\<`TObject`\>
 
-Defined in: [Config.ts:31](https://github.com/stonemjs/config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L31)
+Defined in: [Config.ts:31](https://github.com/stone-foundation/stone-js-config/blob/67901ab774239d1e9fe3a0b26ada0e68e958096e/src/Config.ts#L31)
 
 Create a Config from a JSON string.
 
